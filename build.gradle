@@ -33,6 +33,9 @@ dependencies {
     implementation 'net.java.dev.jna:jna-platform:5.2.0'
 
     implementation 'com.thoughtworks.xstream:xstream:1.4.11.1'
+    // implementation 'com.helger:ph-css:6.1.3'
+    implementation 'net.sf.cssbox:jstyleparser:3.3'
+    // implementation 'com.github.HtmlUnit:htmlunit-cssparser:1.4.0'
 }
 
 configurations.all {
