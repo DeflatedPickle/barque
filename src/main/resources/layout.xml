@@ -1,0 +1,13 @@
+<barque>
+    <monitor type="primary">
+        <bar clazz="top">
+
+        </bar>
+    </monitor>
+
+    <monitor type="all">
+        <bar clazz="taskbar">
+
+        </bar>
+    </monitor>
+</barque>
