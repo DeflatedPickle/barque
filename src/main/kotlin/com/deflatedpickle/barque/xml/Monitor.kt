@@ -10,9 +10,9 @@ class Monitor(@XStreamAlias("type")
               val type: String,
               vararg bars: Bar) {
     @XStreamImplicit(itemFieldName = "bar")
-    val barList: List<Bar> = bars.asList()
+    val barList: List<Bar>? = bars.asList()
 
     override fun toString(): String {
-        return "Monitor { type=$type, bars=${barList.joinToString()} }"
+        return "Monitor { type=$type, bars=${barList?.joinToString()} }"
     }
 }

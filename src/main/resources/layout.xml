@@ -1,7 +1,7 @@
 <barque>
     <monitor type="primary">
         <bar clazz="top">
-
+            <widget clazz="time" script="TimeWidget"/>
         </bar>
     </monitor>
 

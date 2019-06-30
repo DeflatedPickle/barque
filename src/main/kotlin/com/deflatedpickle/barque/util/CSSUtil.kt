@@ -6,6 +6,7 @@ import cz.vutbr.web.css.StyleSheet
 import cz.vutbr.web.csskit.TermFloatValueImpl
 import cz.vutbr.web.csskit.TermLengthImpl
 import cz.vutbr.web.csskit.TermPercentImpl
+import org.eclipse.swt.graphics.GC
 import kotlin.math.roundToInt
 
 object CSSUtil {
@@ -48,5 +49,10 @@ object CSSUtil {
             }
             else -> 0
         }
+    }
+
+    fun themeGraphics(theme: String, graphics: GC): GC {
+        // TODO: Apply the theme... or at least some elements of the theme onto the graphics
+        return graphics
     }
 }

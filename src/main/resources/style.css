@@ -15,3 +15,11 @@
 
     background: slategrey;
 }
+
+.time {
+    width: 10px;
+    height: 10px;
+
+    left: 99%;
+    top: 50%;
+}
