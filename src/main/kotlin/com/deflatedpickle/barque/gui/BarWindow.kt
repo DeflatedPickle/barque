@@ -13,7 +13,6 @@ import org.eclipse.swt.layout.FillLayout
 import org.eclipse.swt.widgets.Display
 import org.eclipse.swt.widgets.Monitor
 import org.eclipse.swt.widgets.Shell
-import org.jruby.RubyObject
 import org.jruby.runtime.Block
 import org.jruby.runtime.builtin.IRubyObject
 
@@ -63,12 +62,19 @@ class BarWindow(display: Display, monitor: Monitor, val xmlLayout: Bar, val styl
 
                     val width = CSSUtil.runTheNumbers(style[i.clazz]!!["width"], this.size.x, 0)
                     val height = CSSUtil.runTheNumbers(style[i.clazz]!!["height"], this.size.y, 0)
-                    RubyThread.rubyContainer.callMethod(widgetMap[i], "place", (left ?: 0) - (right ?: 0), (top ?: 0) - (bottom ?: 0), (width ?: 0), (height ?: 0))
+                    RubyThread.rubyContainer.callMethod(widgetMap[i], "place", (left ?: 0) - (right ?: 0), (top
+                            ?: 0) - (bottom ?: 0), (width ?: 0), (height ?: 0))
                 }
             }
         }
 
         val canvas = BarqueCanvas(this, widgetMap)
+        display.timerExec(1000 / 60, object : Runnable {
+            override fun run() {
+                canvas.redraw()
+                display.timerExec(1000 / 60, this)
+            }
+        })
 
         // Background Colour
         val colour = java.awt.Color.decode((style[xmlLayout.clazz]!!["background"] as TermColorImpl).toString())
