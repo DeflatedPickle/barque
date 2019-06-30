@@ -13,6 +13,7 @@ import org.eclipse.swt.layout.FillLayout
 import org.eclipse.swt.widgets.Display
 import org.eclipse.swt.widgets.Monitor
 import org.eclipse.swt.widgets.Shell
+import org.jruby.RubyObject
 import org.jruby.runtime.Block
 import org.jruby.runtime.builtin.IRubyObject
 
@@ -21,14 +22,15 @@ class BarWindow(display: Display, monitor: Monitor, val xmlLayout: Bar, val styl
         var barCount = 0
     }
 
+    val width = CSSUtil.runTheNumbers(style[xmlLayout.clazz]!!["width"], monitor.clientArea.width, null)!!
+    val height = CSSUtil.runTheNumbers(style[xmlLayout.clazz]!!["height"], monitor.clientArea.height, null)!!
+
     init {
         this.text = "Bar $barCount"
 
         this.layout = FillLayout()
 
         // Set the size of the bar
-        val width = CSSUtil.runTheNumbers(style[xmlLayout.clazz]!!["width"], monitor.clientArea.width, null)!!
-        val height = CSSUtil.runTheNumbers(style[xmlLayout.clazz]!!["height"], monitor.clientArea.height, null)!!
         this.size = Point(width, height)
 
         // Centres the bar on the monitor
@@ -48,12 +50,12 @@ class BarWindow(display: Display, monitor: Monitor, val xmlLayout: Bar, val styl
         )
 
         // Load the widgets
-        val widgetMap = mutableMapOf<Widget, IRubyObject>()
+        val widgetMap = mutableMapOf<Widget, RubyObject>()
         if (xmlLayout.widgetList != null) {
             for (i in xmlLayout.widgetList) {
                 // widgetMap.put(i, RubyThread.rubyContainer.runScriptlet("${i.script}.new"))
                 if (RubyThread.scriptClasses.containsKey(i.script)) {
-                    widgetMap[i] = RubyThread.scriptClasses.getValue(i.script).newInstance(RubyThread.ruby.currentContext, Block.NULL_BLOCK)
+                    widgetMap[i] = RubyThread.scriptClasses.getValue(i.script).newInstance(RubyThread.ruby.currentContext, Block.NULL_BLOCK) as RubyObject
 
                     val left = CSSUtil.runTheNumbers(style[i.clazz]!!["left"], this.size.x, 0)
                     val right = CSSUtil.runTheNumbers(style[i.clazz]!!["right"], this.size.x, 0)
@@ -68,7 +70,7 @@ class BarWindow(display: Display, monitor: Monitor, val xmlLayout: Bar, val styl
             }
         }
 
-        val canvas = BarqueCanvas(this, widgetMap)
+        val canvas = BarqueCanvas(this, style, widgetMap)
         display.timerExec(1000 / 60, object : Runnable {
             override fun run() {
                 canvas.redraw()
