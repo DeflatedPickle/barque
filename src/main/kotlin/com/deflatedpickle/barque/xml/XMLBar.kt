@@ -5,12 +5,12 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute
 import com.thoughtworks.xstream.annotations.XStreamImplicit
 
 @XStreamAlias("bar")
-class Bar(@XStreamAlias("clazz")
+class XMLBar(@XStreamAlias("clazz")
           @XStreamAsAttribute
           val clazz: String,
-          vararg widgets: Widget) {
+             vararg widgets: XMLWidget) {
     @XStreamImplicit(itemFieldName = "widget")
-    val widgetList: List<Widget>? = widgets.asList()
+    val widgetList: List<XMLWidget>? = widgets.asList()
 
     override fun toString(): String {
         return "Bar { clazz=$clazz, widgets=$widgetList }"

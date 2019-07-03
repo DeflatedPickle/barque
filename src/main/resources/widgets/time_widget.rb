@@ -1,9 +1,24 @@
+java_import "org.eclipse.swt.SWT"
+java_import "org.eclipse.swt.widgets.Button"
+java_import "org.eclipse.swt.layout.GridData"
+
 class TimeWidget < Widget
-  def draw(gc)
+  def initialize(shell_index)
+    super shell_index
+
+    @label = Button.new @composite, SWT::NONE
+    grid_data = GridData.new
+    grid_data.widthHint = 40
+    @composite.layoutData = grid_data
+  end
+
+  def update
+    super
+
     time = Time.now
     time_string = "#{time.hour}:#{time.min}"
-    text_size = gc.textExtent time_string
-    gc.drawText time_string, @x - text_size.x / 2, @y - text_size.y / 2
+    # puts time_string
+    @label.setText time_string
   end
 end
 

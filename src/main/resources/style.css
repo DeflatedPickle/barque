@@ -4,6 +4,8 @@
 
     bottom: 97%;
 
+    display: grid;
+
     background: darkslategray;
 }
 
@@ -17,13 +19,16 @@
 }
 
 .time {
-    width: 10px;
-    height: 10px;
+    /* width: 10px;
+    height: 10px; */
 
-    left: 99%;
+    grid-column: 0;
+    grid-row: 0;
+
+    /* left: 99%;
     top: 50%;
 
     font-weight: bold;
 
-    color: white;
+    color: white; */
 }

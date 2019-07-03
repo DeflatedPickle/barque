@@ -4,11 +4,11 @@ import com.thoughtworks.xstream.annotations.XStreamAlias
 import com.thoughtworks.xstream.annotations.XStreamImplicit
 
 @XStreamAlias("barque")
-class Barque(vararg monitors: Monitor) {
+class XMLBarque(vararg monitors: XMLMonitor) {
     @XStreamImplicit(itemFieldName = "monitor")
-    val monitorList: List<Monitor>? = monitors.asList()
+    val monitorList: List<XMLMonitor>? = monitors.asList()
 
     override fun toString(): String {
-        return "Barque { monitors=${monitorList?.joinToString()} }"
+        return "com.deflatedpickle.barque.Barque { monitors=${monitorList?.joinToString()} }"
     }
 }

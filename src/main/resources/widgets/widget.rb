@@ -1,13 +1,15 @@
 java_import "com.deflatedpickle.barque.Barque"
+java_import "org.eclipse.swt.SWT"
+java_import "org.eclipse.swt.widgets.Composite"
+java_import "org.eclipse.swt.layout.FillLayout"
 
 class Widget
-  def place(x, y, width, height)
-    @x = x
-    @y = y
-    @width = width
-    @height = height
+  def initialize(shell_index)
+    @shell = Barque.INSTANCE.shellList.get(shell_index)
+    @composite = Composite.new @shell, SWT::NONE
+    @composite.setLayout FillLayout.new
   end
 
-  def draw(gc)
+  def update
   end
 end
