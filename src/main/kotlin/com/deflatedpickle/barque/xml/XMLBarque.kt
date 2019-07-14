@@ -9,6 +9,6 @@ class XMLBarque(vararg monitors: XMLMonitor) {
     val monitorList: List<XMLMonitor>? = monitors.asList()
 
     override fun toString(): String {
-        return "com.deflatedpickle.barque.Barque { monitors=${monitorList?.joinToString()} }"
+        return "XMLBarque { monitors=${monitorList?.joinToString()} }"
     }
 }

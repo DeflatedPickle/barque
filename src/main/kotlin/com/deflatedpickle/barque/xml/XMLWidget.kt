@@ -11,6 +11,6 @@ class XMLWidget(@XStreamAlias("clazz")
              @XStreamAsAttribute
              val script: String) {
     override fun toString(): String {
-        return "Widget { clazz=$clazz, script=$script }"
+        return "XMLWidget { clazz=$clazz, script=$script }"
     }
 }

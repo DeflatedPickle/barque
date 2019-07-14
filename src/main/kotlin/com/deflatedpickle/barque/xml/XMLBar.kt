@@ -13,6 +13,6 @@ class XMLBar(@XStreamAlias("clazz")
     val widgetList: List<XMLWidget>? = widgets.asList()
 
     override fun toString(): String {
-        return "Bar { clazz=$clazz, widgets=$widgetList }"
+        return "XMLBar { clazz=$clazz, widgets=$widgetList }"
     }
 }

@@ -13,6 +13,6 @@ class XMLMonitor(@XStreamAlias("type")
     val barList: List<XMLBar>? = bars.asList()
 
     override fun toString(): String {
-        return "Monitor { type=$type, bars=${barList?.joinToString()} }"
+        return "XMLMonitor { type=$type, bars=${barList?.joinToString()} }"
     }
 }
